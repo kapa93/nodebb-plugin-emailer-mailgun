@@ -1,6 +1,13 @@
 var	fs = require('fs'),
 	path = require('path'),
 
+  User = require.main.require('./user');
+  Topics = require.main.require('./topics');
+  Categories = require.main.require('./categories');
+  meta = require.main.require('./meta');
+  nconf = require.main.require('nconf');
+  async = require.main.require('async');
+
 	winston = require.main.require('winston'),
 	Meta = require.main.require('./src/meta'),
 
@@ -52,6 +59,50 @@ Emailer.send = function(data, callback) {
 
 		return callback(err, data);
 	});
+};
+
+Emailer.sendPost = function(post, callback) {
+    post = post.post;
+    
+    if (post.isMain)) {
+        var content = post.content;
+        
+        async.parallel({
+            user: function(callback) {
+                User.getUserFields(post.uid, ['username', 'picture'], callback);  
+            },
+            topic: function(callback) {
+                Topics.getTopicFields(post.tid, ['title', 'slug'], callback);
+            },
+            category: function(callback) {
+                Categories.getCategoryFields(post.cid, ['name'], callback);
+            }
+        }, function(err, data) {
+            
+            // trim message based on config option
+            var maxContentLength = 1000;
+            if (maxContentLength && content.length > maxContentLength) { content = content.substring(0, maxContentLength) + '...'; }
+            // message format: <username> posted [<categoryname> : <topicname>]\n <message>
+            var message = '<' + nconf.get('url') + '/topic/' + data.topic.slug + '|[' + data.category.name + ': ' + data.topic.title + ']>\n' + content;
+            
+						server.messages().send({
+							to: 'kacper@catalytic.com',
+							subject: 'New post',
+							from: 'community@catalytic.com',
+							html: '<span></span>',
+							text: message
+						}, function (err, body) {
+							if (!err) {
+								winston.verbose('[emailer.mailgun] Sent');
+							} else {
+								winston.warn('[emailer.mailgun] Unable to send.');
+								winston.error('[emailer.mailgun] (' + err.message + ')');
+							}
+
+							return callback(err, data);
+						});
+        });
+    }
 };
 
 Emailer.admin = {

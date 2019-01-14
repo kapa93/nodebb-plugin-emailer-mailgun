@@ -1,12 +1,12 @@
 {
-    "id": "nodebb-plugin-emailer-mailgun",
-    "name": "Emailer (Mailgun)",
+    "id": "nodebb-plugin-emailer-custom",
+    "name": "Post Emailer (Mailgun)",
     "description": "Mailgun Emailer for NodeBB",
     "url": "https://github.com/julianlam/nodebb-plugin-emailer-mailgun",
     "library": "./index.js",
     "templates": "templates",
     "hooks": [
-        { "hook": "filter:email.send", "method": "send" },
+        { "hook": "action:post.save", "method": "sendPost" },
         { "hook": "filter:admin.header.build", "method": "admin.menu" },
         { "hook": "static:app.load", "method": "init" }
     ]

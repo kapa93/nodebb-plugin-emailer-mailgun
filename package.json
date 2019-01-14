@@ -1,6 +1,6 @@
 {
-  "name": "nodebb-plugin-emailer-mailgun",
-  "version": "1.0.3",
+  "name": "nodebb-plugin-emailer-custom",
+  "version": "1.0.0",
   "description": "An emailer plugin for NodeBB using Mailgun as a third party service",
   "main": "index.js",
   "repository": {
@@ -13,7 +13,7 @@
     "emailer",
     "mailgun"
   ],
-  "author": "Julian Lam <julian@designcreateplay.com>",
+  "author": "Kacper Myslinski",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/julianlam/nodebb-plugin-emailer-mailgun/issues"
