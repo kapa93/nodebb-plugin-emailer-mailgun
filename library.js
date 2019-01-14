@@ -64,7 +64,7 @@ Emailer.send = function(data, callback) {
 Emailer.sendPost = function(post, callback) {
     post = post.post;
     
-    if (post.isMain)) {
+    if (post.isMain) {
         var content = post.content;
         
         async.parallel({
