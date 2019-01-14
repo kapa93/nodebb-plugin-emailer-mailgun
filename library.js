@@ -108,9 +108,9 @@ Emailer.sendPost = function(post, callback) {
 Emailer.admin = {
 	menu: function(custom_header, callback) {
 		custom_header.plugins.push({
-			"route": '/plugins/emailer-mailgun',
+			"route": '/plugins/post-emailer',
 			"icon": 'fa-envelope-o',
-			"name": 'Emailer (MailGun)'
+			"name": 'Post Emailer'
 		});
 
 		callback(null, custom_header);
