@@ -1,8 +1,8 @@
 {
   "name": "nodebb-plugin-emailer-custom",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An emailer plugin for NodeBB using Mailgun as a third party service",
-  "main": "index.js",
+  "main": "library.js",
   "repository": {
     "type": "git",
     "url": "https://github.com/julianlam/nodebb-plugin-emailer-mailgun"
