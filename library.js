@@ -1,12 +1,11 @@
+var User = module.parent.require('./user');
+var Topics = module.parent.require('./topics');
+var Categories = module.parent.require('./categories');
+var meta = module.parent.require('./meta');
+var nconf = module.parent.require('nconf');
+var async = module.parent.require('async');
 var	fs = require('fs'),
 	path = require('path'),
-
-  User = require.main.require('./user');
-  Topics = require.main.require('./topics');
-  Categories = require.main.require('./categories');
-  meta = require.main.require('./meta');
-  nconf = require.main.require('nconf');
-  async = require.main.require('async');
 
 	winston = require.main.require('winston'),
 	Meta = require.main.require('./src/meta'),
