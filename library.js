@@ -98,7 +98,7 @@ Emailer.sendPost = function(post, callback) {
 								winston.error('[emailer.mailgun] (' + err.message + ')');
 							}
 
-							return callback(err, data);
+							return callback(err, post);
 						});
         });
     }
