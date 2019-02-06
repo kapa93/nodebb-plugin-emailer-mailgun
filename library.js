@@ -60,7 +60,11 @@ Emailer.send = function(data, callback) {
 	});
 };
 
-Emailer.sendPost = function(post, callback) {
+function getUserEmail(userID) {
+
+}
+
+Emailer.sendPostReply = function(post, callback) {
     post = post.post;
     
     if (post.isMain) {
@@ -85,10 +89,10 @@ Emailer.sendPost = function(post, callback) {
             var message = '<' + nconf.get('url') + '/topic/' + data.topic.slug + '|[' + data.category.name + ': ' + data.topic.title + ']>\n' + content;
             
 						server.messages().send({
-							to: 'kacper@catalytic.com',
+							to: data.to,
 							subject: 'New post',
 							from: 'community@catalytic.com',
-							html: '<span>' + message + '</span>',
+							html: '<span>Hey there! Someone replied to your topic:' + message + '</span>',
 							text: message
 						}, function (err, body) {
 							if (!err) {
